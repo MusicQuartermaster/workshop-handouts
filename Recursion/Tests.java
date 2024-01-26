@@ -20,10 +20,6 @@ public class Tests {
 	 * a simple guide online for the IDE you are working with
 	 */
 
-	private static final double DOUBLE_THRESHOLD = 1e-8;
-	private static final int NUM_OF_TESTS = 20;
-	private static final int STRING_LENGTH = 20;
-
 	Class<?> testClass = Recursion.class;
 
 	Method multiply, removeA, add, fibonacci, findMax, factorial, power, countLs, sumArray, replaceVowels, contains6,
@@ -47,7 +43,7 @@ public class Tests {
 
 	@Test
 	public void test_multiply() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num1 = (int) (Math.random() * 100f + 1);
 			int num2 = (int) (Math.random() * 100f + 1);
 			assertEquals(num1 * num2, multiply.invoke(testClass, num1, num2));
@@ -58,15 +54,15 @@ public class Tests {
 
 	@Test
 	public void test_removeA() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String s = TestUtils.randString(STRING_LENGTH).toLowerCase();
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String s = TestUtils.randString(TestUtils.STRING_LENGTH).toLowerCase();
 			assertEquals(s.replaceAll("[aA]", ""), removeA.invoke(testClass, s));
 		}
 	}
 
 	@Test
 	public void test_add() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num1 = (int) (Math.random() * 100f + 2);
 			int num2 = (int) (Math.random() * 100f + 2);
 			assertEquals(num1 + num2, add.invoke(testClass, num1, num2));
@@ -75,7 +71,7 @@ public class Tests {
 
 	@Test
 	public void test_fibonacci() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num = (int) (Math.random() * 40f + 1);
 			int resA = 0;
 			int resB = 1;
@@ -92,7 +88,7 @@ public class Tests {
 
 	@Test
 	public void test_factorial() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num = (int) (Math.random() * 20);
 			long res = 1;
 			for (int j = 1; j <= num; j++) {
@@ -104,17 +100,17 @@ public class Tests {
 
 	@Test
 	public void test_power() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int base = (int) (Math.random() * 10f + 1);
 			assertEquals(1, power.invoke(testClass, base, 0));
 		}
 
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int pow = (int) (Math.random() * 10f + 1);
 			assertEquals(0, power.invoke(testClass, 0, pow));
 		}
 
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int base = (int) (Math.random() * 5f + 1);
 			int pow = (int) (Math.random() * 5f + 1);
 			assertEquals((int) (Math.pow(base, pow)), power.invoke(testClass, base, pow));
@@ -125,30 +121,30 @@ public class Tests {
 
 	@Test
 	public void test_countLs() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String s = TestUtils.randString(STRING_LENGTH);
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String s = TestUtils.randString(TestUtils.STRING_LENGTH);
 			assertEquals(Recursion.countLs(s), (int) countLs.invoke(testClass, s));
 		}
 	}
 
 	@Test
 	public void test_sumArray() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			double[] arr = new double[(int) (Math.random() * 50)];
 			double sum = 0f;
 			for (int j = 0; j < arr.length; j++) {
 				arr[j] = Math.random() * 100f;
 				sum += arr[j];
 			}
-			assertEquals(sum, (double) sumArray.invoke(testClass, arr), DOUBLE_THRESHOLD);
+			assertEquals(sum, (double) sumArray.invoke(testClass, arr), TestUtils.DOUBLE_THRESHOLD);
 		}
 	}
 
 	@Test
 	public void test_replaceVowels()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String s = TestUtils.randString(STRING_LENGTH);
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String s = TestUtils.randString(TestUtils.STRING_LENGTH);
 			String res = s.replaceAll("[AEIOUaeiou]", "@");
 			assertEquals(res, (String) replaceVowels.invoke(testClass, s));
 		}
@@ -156,7 +152,7 @@ public class Tests {
 
 	@Test
 	public void test_contains6() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int[] arr = new int[(int) (Math.random() * 50)];
 			TestUtils.fillArray(arr, 0, 100);
 			boolean res = false;
@@ -172,16 +168,16 @@ public class Tests {
 
 	@Test
 	public void test_addStar() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String s = TestUtils.randString((int) (Math.random() * STRING_LENGTH + 1));
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String s = TestUtils.randString((int) (Math.random() * TestUtils.STRING_LENGTH + 1));
 			assertEquals(Recursion.addStar(s), (String) addStar.invoke(testClass, s));
 		}
 	}
 
 	@Test
 	public void test_endX() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String s = TestUtils.randString(STRING_LENGTH).toLowerCase();
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String s = TestUtils.randString(TestUtils.STRING_LENGTH).toLowerCase();
 			String res = "";
 			int count = 0;
 			for (int j = 0; j < s.length(); j++) {

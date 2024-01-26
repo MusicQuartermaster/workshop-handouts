@@ -25,8 +25,6 @@ public class Tests {
 	 * you try to run this class. If you are not using eclipse, you can easily find
 	 * a simple guide online for the IDE you are working with
 	 */
-	static final int NUM_OF_TESTS = 20;
-	static final int ARRAY_SIZE = 50;
 
 	static final Class<?> testClass = LoopsAndArrays.class;
 	Method createArray, fillArray, copyArray, printArray, arraySum, positiveSum, containsValue, doubleValues,
@@ -49,7 +47,7 @@ public class Tests {
 	@Test
 	public void test_createArray() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			double[] arr = (double[]) createArray.invoke(testClass, (Integer) i);
 			assertNotNull("Array must not be null", arr);
 			assertEquals("Array length must be equal to value specified", i, arr.length);
@@ -62,8 +60,8 @@ public class Tests {
 	@Test
 	public void test_fillArray() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			double[] arr = new double[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			double[] arr = new double[TestUtils.ARRAY_SIZE];
 			double minVal = Math.random() * 10f + 1f;
 			double valueRange = Math.random() * 100f + 1f;
 			double maxVal = minVal + valueRange;
@@ -79,8 +77,8 @@ public class Tests {
 	@Test
 	public void test_copyArray() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String[] thisArr = new String[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String[] thisArr = new String[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(thisArr, 2, 10);
 			assertTrue(Arrays.deepEquals(thisArr, (String[]) copyArray.invoke(testClass, new Object[] { thisArr })));
 		}
@@ -90,10 +88,10 @@ public class Tests {
 	public void test_printArray() throws IOException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		PrintStream stdOut = System.out;
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			ByteArrayOutputStream redirectedOut = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(redirectedOut));
-			int[] arr = new int[ARRAY_SIZE];
+			int[] arr = new int[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(arr, -50, 50);
 			printArray.invoke(testClass, arr);
 			assertEquals(toString(arr).trim(), redirectedOut.toString().trim());
@@ -104,8 +102,8 @@ public class Tests {
 	@Test
 	public void test_arraySum() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			int[] arr = new int[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			int[] arr = new int[TestUtils.ARRAY_SIZE];
 			int sum = 0;
 			TestUtils.fillArray(arr, -50, 50);
 			for (int integer : arr) {
@@ -118,8 +116,8 @@ public class Tests {
 	@Test
 	public void test_positiveSum() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			double[] arr = new double[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			double[] arr = new double[TestUtils.ARRAY_SIZE];
 			double sum = 0;
 			TestUtils.fillArray(arr, -50, 50);
 			for (double d : arr) {
@@ -132,8 +130,8 @@ public class Tests {
 	@Test
 	public void test_containsValue() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			int[] arr = new int[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			int[] arr = new int[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(arr, -50, 50);
 			int value = (int) (Math.random() * 150f - 75f);
 			assertEquals(LoopsAndArraysSolution.ContainsValue(arr, value), containsValue.invoke(testClass, arr, value));
@@ -143,7 +141,7 @@ public class Tests {
 	@Test
 	public void test_doubleValues() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int[] arr = new int[i];
 			TestUtils.fillArray(arr, -50, 50);
 			int[] clone = arr.clone();
@@ -157,10 +155,10 @@ public class Tests {
 	public void test_printReverse() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
 		PrintStream stdOut = System.out;
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			ByteArrayOutputStream redirectedOut = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(redirectedOut));
-			String[] arr = new String[ARRAY_SIZE];
+			String[] arr = new String[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(arr, 'A', 'Z');
 			printReverse.invoke(testClass, new Object[] { arr });
 			assertEquals(toReverseString(arr).trim(), redirectedOut.toString().trim());
@@ -171,8 +169,8 @@ public class Tests {
 	@Test
 	public void test_reverseArray() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			int[] arr = new int[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			int[] arr = new int[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(arr, -50, 50);
 			int[] clone = arr.clone();
 			LoopsAndArraysSolution.ReverseArray(arr);

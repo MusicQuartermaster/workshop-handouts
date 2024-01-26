@@ -22,11 +22,7 @@ public class Tests {
 	 * a simple guide online for the IDE you are working with
 	 */
 
-//	private static final double DOUBLE_THRESHOLD = 1e-8;
-	private static final int NUM_OF_TESTS = 20;
-//	private static final int STRING_LENGTH = 20;
-
-	Class<?> testClass = GeneralSolution.class;
+	Class<?> testClass = General.class;
 
 	Method sortChunks, distance, circlesAreTangent, removeDuplicates, sumDigits, countMoney;
 
@@ -43,7 +39,7 @@ public class Tests {
 
 	@Test
 	public void test_sortChunks() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int stringLength = (int) (Math.random() * 20f + 2);
 			int chunkSize = (int) (Math.random() * stringLength - 1) + 1;
 			String s = TestUtils.randString(stringLength);
@@ -53,7 +49,7 @@ public class Tests {
 
 	@Test
 	public void test_distance() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int x1 = (int) (Math.random() * 100f - 50f);
 			int y1 = (int) (Math.random() * 100f - 50f);
 			int x2 = (int) (Math.random() * 100f - 50f);
@@ -65,7 +61,7 @@ public class Tests {
 	@Test
 	public void test_circlesAreTangent()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int x1 = (int) (Math.random() * 100f - 50f);
 			int y1 = (int) (Math.random() * 100f - 50f);
 			double radius1 = Math.random() * 50f + 0.1f;
@@ -76,7 +72,7 @@ public class Tests {
 					circlesAreTangent.invoke(testClass, x1, y1, radius1, x2, y2, radius2));
 		}
 
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int x1 = (int) (Math.random() * 100f - 50f);
 			int y1 = (int) (Math.random() * 100f - 50f);
 			double radius1 = Math.random() * 50f + 0.1f;
@@ -90,7 +86,7 @@ public class Tests {
 	@Test
 	public void test_removeDuplicates()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int[] arr = new int[(int) (Math.random() * 50f + 1)];
 			arr[0] = (int) (Math.random() * 100f);
 			for (int j = 1; j < arr.length; j++) {
@@ -104,7 +100,7 @@ public class Tests {
 
 	@Test
 	public void test_sumDigits() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num = (int) (Math.random() * 10_000f);
 			assertEquals(GeneralSolution.sumDigits(num), sumDigits.invoke(testClass, num));
 		}
@@ -112,7 +108,7 @@ public class Tests {
 
 	@Test
 	public void test_countMoney() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int[] arr = new int[12];
 			TestUtils.fillArray(arr, 0, 20);
 			assertEquals(GeneralSolution.countMoney(arr), countMoney.invoke(testClass, arr));

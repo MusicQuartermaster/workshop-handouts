@@ -24,9 +24,6 @@ public class Tests {
 	 * a simple guide online for the IDE you are working with
 	 */
 
-	private static final int NUM_OF_TESTS = 20;
-	private static final int ARRAY_SIZE = 50;
-
 	Class<?> testClass = ExceptionHandling.class;
 
 	Method getValueOrThrow, getValueOrNull, onlyEvenNumbers, containsVowel;
@@ -42,10 +39,10 @@ public class Tests {
 	@Test
 	public void test_getValueOrThrow()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String[] arr = new String[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String[] arr = new String[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(arr, 'A', 'Z');
-			int idx = (int) ((Math.random() * ARRAY_SIZE * 2) - (ARRAY_SIZE / 2));
+			int idx = (int) ((Math.random() * TestUtils.ARRAY_SIZE * 2) - (TestUtils.ARRAY_SIZE / 2));
 			try {
 				assertEquals(arr[idx], (String) getValueOrThrow.invoke(testClass, arr, idx));
 			} catch (IndexOutOfBoundsException e) {
@@ -57,11 +54,11 @@ public class Tests {
 	@Test
 	public void test_getValueOrNull()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String[] arr = new String[ARRAY_SIZE];
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
+			String[] arr = new String[TestUtils.ARRAY_SIZE];
 			TestUtils.fillArray(arr, 'A', 'Z');
-			int idx = (int) ((Math.random() * ARRAY_SIZE * 2) - (ARRAY_SIZE / 2));
-			if (idx >= 0 && idx < ARRAY_SIZE) {
+			int idx = (int) ((Math.random() * TestUtils.ARRAY_SIZE * 2) - (TestUtils.ARRAY_SIZE / 2));
+			if (idx >= 0 && idx < TestUtils.ARRAY_SIZE) {
 				assertEquals(arr[idx], (String) getValueOrNull.invoke(testClass, arr, idx));
 			} else {
 				assertNull(getValueOrNull.invoke(testClass, arr, idx));
@@ -72,7 +69,7 @@ public class Tests {
 	@Test
 	public void test_onlyEvenNumbers()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int number = (int) (Math.random() * 100);
 			try {
 				assertEquals(number, onlyEvenNumbers.invoke(testClass, number));
@@ -87,7 +84,7 @@ public class Tests {
 	@Test
 	public void test_containsVowel()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String s = TestUtils.randString((int) (Math.random() * 20) + 1);
 			if (s.matches(".*[AEIOUaeiou].*")) {
 				assertTrue((boolean) containsVowel.invoke(testClass, s));
@@ -96,7 +93,7 @@ public class Tests {
 			}
 		}
 
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String s = TestUtils.randString((int) (Math.random() * 20) + 1);
 			int idx = (int) (Math.random() * s.length());
 			s = s.substring(0, idx) + ((int) (Math.random() * 10)) + s.substring(idx);

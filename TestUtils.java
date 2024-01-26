@@ -2,6 +2,11 @@ package workshops.practice_problems;
 
 public abstract class TestUtils {
 
+	public static final double DOUBLE_THRESHOLD = 1e-8;
+	public static final int NUM_OF_TESTS = 20;
+	public static final int STRING_LENGTH = 20;
+	public static final int ARRAY_SIZE = 50;
+
 	public static boolean coinFlip() {
 		return Math.random() > .5;
 	}

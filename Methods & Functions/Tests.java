@@ -21,9 +21,6 @@ public class Tests {
 	 * a simple guide online for the IDE you are working with
 	 */
 
-	private static final double DOUBLE_THRESHOLD = 1e-8;
-	private static final int NUM_OF_TESTS = 20;
-
 	Class<?> testClass = MethodsAndFunctions.class;
 
 	Method multiply, integerDivision, divisionRemainder, calculateRectanglePerimeter, findMax, isPalindrome, isPrime,
@@ -48,10 +45,10 @@ public class Tests {
 
 	@Test
 	public void test_multiply() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			double num1 = Math.random() * 100f + 0.1;
 			double num2 = Math.random() * 100f + 0.1;
-			assertEquals(num1 * num2, (double) multiply.invoke(testClass, num1, num2), DOUBLE_THRESHOLD);
+			assertEquals(num1 * num2, (double) multiply.invoke(testClass, num1, num2), TestUtils.DOUBLE_THRESHOLD);
 		}
 		assertEquals(0.0, (double) multiply.invoke(testClass, Math.random() * 100f, 0), 0.0);
 	}
@@ -59,7 +56,7 @@ public class Tests {
 	@Test
 	public void test_integerDivision()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int dividend = (int) (Math.random() * 100f + 2);
 			int divisor = (int) (Math.random() * 100f + 2);
 			assertEquals(dividend / divisor, integerDivision.invoke(testClass, dividend, divisor));
@@ -69,7 +66,7 @@ public class Tests {
 	@Test
 	public void test_divisionRemainder()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int dividend = (int) (Math.random() * 100f + 2);
 			int divisor = (int) (Math.random() * 100f + 2);
 			assertEquals(dividend % divisor, divisionRemainder.invoke(testClass, dividend, divisor));
@@ -79,17 +76,17 @@ public class Tests {
 	@Test
 	public void test_calculateRactanglePerimeter()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			double length = Math.random() * 100f + 1;
 			double width = Math.random() * 100f + 1;
 			assertEquals(2 * length + 2 * width, (double) calculateRectanglePerimeter.invoke(testClass, length, width),
-					DOUBLE_THRESHOLD);
+					TestUtils.DOUBLE_THRESHOLD);
 		}
 	}
 
 	@Test
 	public void test_findMax() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int a = (int) (Math.random() * 100f - 50);
 			int b = (int) (Math.random() * 100f - 50);
 			int c = (int) (Math.random() * 100f - 50);
@@ -99,7 +96,7 @@ public class Tests {
 
 	@Test
 	public void test_isPalindrome() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String palindrome = "";
 			int stringLength = (int) (Math.random() * 20);
 			for (int j = 0; j < stringLength; j++) {
@@ -112,7 +109,7 @@ public class Tests {
 			assertTrue((boolean) isPalindrome.invoke(testClass, palindrome));
 		}
 
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String s = TestUtils.randString((int) (Math.random() * 20 + 2));
 			assertEquals((boolean) MethodsAndFunctionsSolution.isPalindrome(s), isPalindrome.invoke(testClass, s));
 		}
@@ -120,7 +117,7 @@ public class Tests {
 
 	@Test
 	public void test_isPrime() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int n = (int) (Math.random() * 100f);
 			assertEquals(MethodsAndFunctionsSolution.isPrime(n), (boolean) isPrime.invoke(testClass, n));
 		}
@@ -129,17 +126,17 @@ public class Tests {
 	@Test
 	public void test_calculateHypotenuse()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			double a = Math.random() * 100f;
 			double b = Math.random() * 100f;
 			assertEquals(MethodsAndFunctionsSolution.calculateHypotenuse(a, b),
-					(double) calculateHypotenuse.invoke(testClass, a, b), DOUBLE_THRESHOLD);
+					(double) calculateHypotenuse.invoke(testClass, a, b), TestUtils.DOUBLE_THRESHOLD);
 		}
 	}
 
 	@Test
 	public void test_findGCD() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int a = (int) (Math.random() * 100f);
 			int b = (int) (Math.random() * 100f);
 			assertEquals(MethodsAndFunctionsSolution.findGCD(a, b), (int) findGCD.invoke(testClass, a, b));
@@ -149,7 +146,7 @@ public class Tests {
 	@Test
 	public void test_isPerfectSquare()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num = (int) (Math.random() * 100f);
 			int sqrt = (int) (Math.sqrt(num));
 			assertEquals(sqrt * sqrt == num, (boolean) isPerfectSquare.invoke(testClass, num));
@@ -158,7 +155,7 @@ public class Tests {
 
 	@Test
 	public void test_factorial() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num = (int) (Math.random() * 20);
 			assertEquals(MethodsAndFunctionsSolution.factorial(num), (long) factorial.invoke(testClass, num));
 		}
@@ -167,7 +164,7 @@ public class Tests {
 	@Test
 	public void test_convertDecToBin()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int num = (int) (Math.random() * 256);
 			assertEquals(MethodsAndFunctionsSolution.convertDecToBin(num),
 					(String) convertDecToBin.invoke(testClass, num));
@@ -177,7 +174,7 @@ public class Tests {
 	@Test
 	public void test_convertBinToDec()
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String binary = "";
 			int binaryLength = (int) (Math.random() * 9 + 1);
 			for (int j = 0; j < binaryLength; j++) {

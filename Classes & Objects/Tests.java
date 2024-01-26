@@ -15,6 +15,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import workshops.practice_problems.TestUtils;
+
 public class Tests {
 	/*
 	 * This is the test harness for the given practice problems. Make sure to
@@ -34,9 +36,6 @@ public class Tests {
 	private Method calculateArea, calculateCircumference;
 
 	private Field color, radius;
-
-	private static final double DOUBLE_THRESHOLD = 1e-8;
-	private static final int NUM_OF_TESTS = 20;
 
 	@Before
 	public void Setup() throws NoSuchFieldException, SecurityException, NoSuchMethodException {
@@ -84,7 +83,7 @@ public class Tests {
 	@Test
 	public void test_constructor() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String randColor = colors.get((int) (Math.random() * colors.size()));
 			double randRadius = Math.random() * 100f + 1;
 
@@ -105,7 +104,7 @@ public class Tests {
 	@Test
 	public void test_getters() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String randColor = colors.get((int) (Math.random() * colors.size()));
 			double randRadius = Math.random() * 100f + 1;
 
@@ -127,7 +126,7 @@ public class Tests {
 	public void test_setters() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		Object circle = defaultConstructor.newInstance();
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String randColor = colors.get((int) (Math.random() * colors.size()));
 			double randRadius = Math.random() * 100f + 1;
 
@@ -147,7 +146,7 @@ public class Tests {
 	@Test
 	public void test_areaAndCircumference() throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			String randColor = colors.get((int) (Math.random() * colors.size()));
 			double randRadius = Math.random() * 100f + 1;
 
@@ -161,11 +160,11 @@ public class Tests {
 
 			// Circumference
 			assertNotNull(actCircumference);
-			assertEquals(circumference, (double) actCircumference, DOUBLE_THRESHOLD);
+			assertEquals(circumference, (double) actCircumference, TestUtils.DOUBLE_THRESHOLD);
 
 			// Area
 			assertNotNull(actArea);
-			assertEquals(area, (double) actArea, DOUBLE_THRESHOLD);
+			assertEquals(area, (double) actArea, TestUtils.DOUBLE_THRESHOLD);
 		}
 	}
 
@@ -179,7 +178,7 @@ public class Tests {
 			assertFalse((boolean) equals.invoke(circle, "Not A Circle"));
 			assertTrue((boolean) equals.invoke(circle, circle));
 		}
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int colorIdx = (int) (Math.random() * colors.size());
 			String randColor = colors.get(colorIdx);
 			double randRadius = Math.random() * 100f + 1;
@@ -198,7 +197,7 @@ public class Tests {
 			assertFalse((boolean) equals.invoke(circle, other));
 		}
 
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			int colorIdx = (int) (Math.random() * colors.size());
 			String randColor = colors.get(colorIdx);
 			double randRadius = Math.random() * 100f + 1;
@@ -219,7 +218,7 @@ public class Tests {
 	@Test
 	public void test_staticMethods() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
-		for (int i = 0; i < NUM_OF_TESTS; i++) {
+		for (int i = 0; i < TestUtils.NUM_OF_TESTS; i++) {
 			double randRadius = Math.random() * 100f + 1;
 
 			double circumference = 2 * Math.PI * randRadius;
@@ -227,10 +226,10 @@ public class Tests {
 
 			// Circumference
 			assertEquals(circumference, (double) calculateCircumference.invoke(testClass, randRadius),
-					DOUBLE_THRESHOLD);
+					TestUtils.DOUBLE_THRESHOLD);
 
 			// Area
-			assertEquals(area, (double) calculateArea.invoke(testClass, randRadius), DOUBLE_THRESHOLD);
+			assertEquals(area, (double) calculateArea.invoke(testClass, randRadius), TestUtils.DOUBLE_THRESHOLD);
 		}
 	}
 }
